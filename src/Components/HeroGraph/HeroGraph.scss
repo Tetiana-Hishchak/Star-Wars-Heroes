@@ -1,0 +1,18 @@
+.hero__graph {
+  position: fixed;
+  top: 40px;
+  right: 0;
+  width: 100%;
+  background-color: white;
+  border-left: 1px solid #ddd;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .hero__graph {
+    width: 50%;    
+  }
+}
+
+
+
