@@ -10,6 +10,7 @@ import './ListHero.scss';
 
 export const ListHero: React.FC = () => {
   const [heroes, setHeroes] = useState<Hero[]>([]);
+  const [totalCount, setTotalCount] = useState<number>(0); 
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage]
   = useState(+(searchParams.get('currentPage') || 1));
@@ -17,13 +18,13 @@ export const ListHero: React.FC = () => {
   const [selectedHeroId, setSelectedHeroId] = useState<number | null>(null);
 
   const heroesPerPage = 10;
-
+  
   useEffect(() => {
     const params = new URLSearchParams(searchParams);
     params.set('currentPage', currentPage.toString());
     setSearchParams(params);
 
-    fetchHeroes(currentPage, setLoading, setHeroes);
+    fetchHeroes(currentPage, setLoading, setHeroes, setTotalCount);
   }, [currentPage, searchParams, setSearchParams]);
 
 
@@ -57,7 +58,7 @@ export const ListHero: React.FC = () => {
               ))}
             </ul>
             <PaginationButton
-              total={82} 
+              total={totalCount} 
               itemOnPage={heroesPerPage}
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}

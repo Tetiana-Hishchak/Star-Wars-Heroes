@@ -1,5 +1,5 @@
 # DEMO
-You can find demo of this project <a href="https://Tetiana-Hishchak.github.io/Star-Wars-Heroes/" target="_blank"> here </a>
+You can find demo of this project <a href="https://star-wars-heroes-phi.vercel.app/" target="_blank"> here </a>
 
 
 

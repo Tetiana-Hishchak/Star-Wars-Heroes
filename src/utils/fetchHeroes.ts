@@ -1,14 +1,21 @@
-import axios from "axios";
-import { Hero } from "../type/Hero";
+import axios from 'axios';
+import { Hero } from '../type/Hero';
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
-export const fetchHeroes = async (page: number, setLoading: (loading: boolean) => void, setHeroes: (heroes: Hero[]) => void) => {
-  setLoading(true);
+export const fetchHeroes = async (
+  page: number,
+  setLoading: (loading: boolean) => void,
+  setHeroes: (heroes: Hero[]) => void,
+  setTotalCount: (count: number) => void
+) => {
   try {
-    const response = await axios.get<{ results: Hero[] }>(`https://sw-api.starnavi.io/people/?page=${page}`);
+    setLoading(true);
+    const response = await axios.get(`${API_BASE_URL}/people/?page=${page}`);
     setHeroes(response.data.results);
+    setTotalCount(response.data.count); 
   } catch (error) {
-    console.error('Failed to fetch heroes:', error);
+    console.error('Error fetching heroes:', error);
   } finally {
     setLoading(false);
   }
